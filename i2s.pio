@@ -22,23 +22,23 @@ set pins, 1
 ;                      /--BCLK
 ;                      |/-LRCLK
 ;                      ||
-pull block      side 0b10
+pull block      side 0b01
 
 out pins, 1     side 0b00
-set x, 29       side 0b10
+set x, 29       side 0b01
 
 L1:
 out pins, 1     side 0b00
-jmp x--, L1     side 0b10
+jmp x--, L1     side 0b01
 
-out pins, 1     side 0b01
+out pins, 1     side 0b10
 pull block      side 0b11
 
-out pins, 1     side 0b01
+out pins, 1     side 0b10
 set x, 29       side 0b11
 
 L2:
-out pins, 1     side 0b01
+out pins, 1     side 0b10
 jmp x--, L2     side 0b11
 
 out pins, 1     side 0b00
@@ -50,24 +50,24 @@ out pins, 1     side 0b00
 ;                      /--BCK
 ;                      |/-WS
 ;                      ||
-pull block      side 0b10 [1]
+pull block      side 0b01 [1]
 
-out pins, 1     side 0b01 [1]
+out pins, 1     side 0b10 [1]
 set x, 13       side 0b11 [1]
 
 L1:
-out pins, 1     side 0b01 [1]
+out pins, 1     side 0b10 [1]
 jmp x--, L1     side 0b11 [1]
 
-out pins, 1     side 0b01 [1]
+out pins, 1     side 0b10 [1]
 pull block      side 0b11 [1]
 
 out pins, 1     side 0b00 [1]
-set x, 13       side 0b10 [1]
+set x, 13       side 0b01 [1]
 
 L2:
 out pins, 1     side 0b00 [1]
-jmp x--, L2     side 0b10 [1]
+jmp x--, L2     side 0b01 [1]
 
 out pins, 1     side 0b00 [1]
 
@@ -107,43 +107,43 @@ out pins, 2     side 0b001 [1]
 ;                      /--BCK
 ;                      |/-WS
 ;                      ||
-pull block      side 0b10
+pull block      side 0b01
 
 out pins, 2     side 0b00
-set x, 13       side 0b10
+set x, 13       side 0b01
 
 L1:
 out pins, 2     side 0b00
-jmp x--, L1     side 0b10
+jmp x--, L1     side 0b01
 
 out pins, 2     side 0b00 
-pull block      side 0b10
+pull block      side 0b01
 
 out pins, 2     side 0b00
-set x, 13       side 0b10
+set x, 13       side 0b01
 
 L2:
 out pins, 2     side 0b00
-jmp x--, L2     side 0b10
+jmp x--, L2     side 0b01
 
-out pins, 2     side 0b01
+out pins, 2     side 0b10
 pull block      side 0b11
 
-out pins, 2     side 0b01
+out pins, 2     side 0b10
 set x, 13       side 0b11
 
 L3:
-out pins, 2     side 0b01
+out pins, 2     side 0b10
 jmp x--, L3     side 0b11
 
-out pins, 2     side 0b01
+out pins, 2     side 0b10
 pull block      side 0b11
 
-out pins, 2     side 0b01
+out pins, 2     side 0b10
 set x, 13       side 0b11
 
 L4:
-out pins, 2     side 0b01
+out pins, 2     side 0b10
 jmp x--, L4     side 0b11
 
 out pins, 2     side 0b00
@@ -156,43 +156,43 @@ out pins, 2     side 0b00
 ;                      /--BCK
 ;                      |/-WS
 ;                      ||
-pull block      side 0b10 [1]
+pull block      side 0b01 [1]
 
-out pins, 2     side 0b01 [1]
+out pins, 2     side 0b10 [1]
 set x, 5        side 0b11 [1]
 
 L1:
-out pins, 2     side 0b01 [1]
+out pins, 2     side 0b10 [1]
 jmp x--, L1     side 0b11 [1]
 
-out pins, 2     side 0b01 [1]
+out pins, 2     side 0b10 [1]
 pull block      side 0b11 [1]
 
-out pins, 2     side 0b01 [1]
+out pins, 2     side 0b10 [1]
 set x, 5        side 0b11 [1]
 
 L2:
-out pins, 2     side 0b01 [1]
+out pins, 2     side 0b10 [1]
 jmp x--, L2     side 0b11 [1]
 
-out pins, 2     side 0b01 [1]
+out pins, 2     side 0b10 [1]
 pull block      side 0b11 [1]
 
 out pins, 2     side 0b00 [1]
-set x, 5        side 0b10 [1]
+set x, 5        side 0b01 [1]
 
 L3:
 out pins, 2     side 0b00 [1]
-jmp x--, L3     side 0b10 [1]
+jmp x--, L3     side 0b01 [1]
 
 out pins, 2     side 0b00 [1]
-pull block      side 0b10 [1]
+pull block      side 0b01 [1]
 
 out pins, 2     side 0b00 [1]
-set x, 5        side 0b10 [1]
+set x, 5        side 0b01 [1]
 
 L4:
 out pins, 2     side 0b00 [1]
-jmp x--, L4     side 0b10 [1]
+jmp x--, L4     side 0b01 [1]
 
 out pins, 2     side 0b00 [1]
