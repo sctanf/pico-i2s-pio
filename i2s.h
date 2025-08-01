@@ -13,10 +13,9 @@
 #define I2S_H
 #include "hardware/pio.h"
 
-//#define I2S_BUF_DEPTH   8
 //#define I2S_START_LEVEL     (I2S_BUF_DEPTH / 4)
 //#define I2S_TARGET_LEVEL    (I2S_BUF_DEPTH * 3 / 4)
-#define I2S_BUF_DEPTH   4
+#define I2S_BUF_DEPTH   8
 #define I2S_START_LEVEL     1
 #define I2S_TARGET_LEVEL    2
 #define I2S_DATA_LEN    ((48 + 8) * 8 * 2)
