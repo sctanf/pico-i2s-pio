@@ -664,11 +664,11 @@ bool i2s_enqueue(uint8_t* in, int sample, uint8_t resolution){
             }
         }
 
-        //音量処理
-        for (i = 0; i < sample / 2; i++){
-            lch_buf[i] = (int32_t)(((int64_t)lch_buf[i] * mul_l) >> 29u);
-            rch_buf[i] = (int32_t)(((int64_t)rch_buf[i] * mul_r) >> 29u);
-        }
+//        //音量処理
+//        for (i = 0; i < sample / 2; i++){
+//            lch_buf[i] = (int32_t)(((int64_t)lch_buf[i] * mul_l) >> 29u);
+//            rch_buf[i] = (int32_t)(((int64_t)rch_buf[i] * mul_r) >> 29u);
+//        }
 
         //i2sバッファに格納
         if (i2s_mode == MODE_EXDF && i2s_use_core1 == false){
