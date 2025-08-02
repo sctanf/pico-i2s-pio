@@ -18,6 +18,10 @@
 #define I2S_BUF_DEPTH   8
 #define I2S_START_LEVEL     1
 #define I2S_TARGET_LEVEL    2
+//#define I2S_TARGET_LEVEL_MIN_US    1200
+//#define I2S_TARGET_LEVEL_MAX_US    1600
+#define I2S_TARGET_LEVEL_MIN_US    1500
+#define I2S_TARGET_LEVEL_MAX_US    2000
 #define I2S_DATA_LEN    ((48 + 8) * 8 * 2)
 
 typedef enum {
@@ -118,6 +122,15 @@ bool i2s_dequeue(int32_t** buff, int* sample);
  * @return int8_t バッファの長さ
  */
 int8_t i2s_get_buf_length(void);
+
+/**
+ * @brief Get the length of the i2s buffer in microseconds
+ * 
+ * @return int32_t Buffer length in microseconds
+ * @note Length is estimated by last transfer time.
+ * @note Data in DMA transfer is not included in buffer length.
+ */
+int32_t i2s_get_buf_us(void);
 
 /**
  * @brief i2sの音量を変更する

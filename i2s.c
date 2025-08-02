@@ -38,6 +38,7 @@ static I2S_MODE i2s_mode        = MODE_I2S;
 static int8_t i2s_buf_length;
 static uint8_t enqueue_pos;
 static uint8_t dequeue_pos;
+static uint64_t last_i2s_transfer = 0;
 
 static int32_t i2s_buf[I2S_BUF_DEPTH][I2S_DATA_LEN];
 static uint32_t i2s_sample[I2S_BUF_DEPTH];
@@ -176,6 +177,7 @@ static void __isr __time_critical_func(i2s_handler)(){
             dequeue_pos = 0;
         }
 		i2s_buf_length--;
+        last_i2s_transfer = time_us_64();
 	}
 	else{
 		dma_channel_transfer_from_buffer_now(i2s_dma_chan, mute_buff, mute_len);
@@ -771,6 +773,22 @@ int8_t i2s_get_buf_length(void){
     spin_unlock(queue_spin_lock, save);
 
     return d;
+}
+
+int32_t i2s_get_buf_us(void){
+    int8_t d;
+
+    uint32_t save = spin_lock_blocking(queue_spin_lock);
+	d = i2s_buf_length;
+    spin_unlock(queue_spin_lock, save);
+
+    // should be no more than 1000us (1ms)
+    uint64_t since_last_i2s_transfer = time_us_64() - last_i2s_transfer;
+
+    // each buffer is 1ms
+    int32_t buffer_us = (uint64_t)d * 1000 - since_last_i2s_transfer;
+
+    return buffer_us;
 }
 
 void i2s_volume_change(int16_t v, int8_t ch){
