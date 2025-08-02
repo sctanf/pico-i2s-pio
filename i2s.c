@@ -157,33 +157,33 @@ static void set_sys_clock_gpin1(void){
  * @note use_core1がfalseのときに呼び出される
  */
 static void __isr __time_critical_func(i2s_handler)(){
-	static bool mute;
-	static int32_t mute_buff[96 * 2] = {0};
-	static uint32_t mute_len = sizeof(mute_buff) / sizeof(int32_t);
-	
-	if (i2s_buf_length == 0 && mute == false){
+    static bool mute;
+    static int32_t mute_buff[96 * 2] = {0};
+    static uint32_t mute_len = sizeof(mute_buff) / sizeof(int32_t);
+        
+    if (i2s_buf_length == 0 && mute == false){
         mute = true;
         set_playback_state(false);
     }
-	else if (i2s_buf_length >= I2S_START_LEVEL && mute == true){
+    else if (i2s_buf_length >= I2S_START_LEVEL && mute == true){
         mute = false;
         set_playback_state(true);
     }
 
-	if (mute == false){
-		dma_channel_transfer_from_buffer_now(i2s_dma_chan, i2s_buf[dequeue_pos], i2s_sample[dequeue_pos]);
-		dequeue_pos++;
-		if (dequeue_pos >= I2S_BUF_DEPTH){
+    if (mute == false){
+        dma_channel_transfer_from_buffer_now(i2s_dma_chan, i2s_buf[dequeue_pos], i2s_sample[dequeue_pos]);
+        dequeue_pos++;
+        if (dequeue_pos >= I2S_BUF_DEPTH){
             dequeue_pos = 0;
         }
-		i2s_buf_length--;
+        i2s_buf_length--;
         last_i2s_transfer = time_us_64();
-	}
-	else{
-		dma_channel_transfer_from_buffer_now(i2s_dma_chan, mute_buff, mute_len);
-	}
+    }
+    else{
+        dma_channel_transfer_from_buffer_now(i2s_dma_chan, mute_buff, mute_len);
+    }
     
-   	dma_hw->ints0 = 1u << i2s_dma_chan;
+    dma_hw->ints0 = 1u << i2s_dma_chan;
 }
 
 /**
